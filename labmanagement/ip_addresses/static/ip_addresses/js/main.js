@@ -31,38 +31,30 @@ function renderNetwork(netnode) {
 			break;
 		}
 	}
-	if (_network_url){
-		for (var i = 0; i<net_addresses.length; i++) {
-			var obj = net_addresses[i];
+	for (var i = 0; i<net_addresses.length; i++) {
+		var obj = net_addresses[i];
+		if (_network_url){
 			if (obj.parent == _network_url){
-				$("#addresses > tbody:last").append("<tr>" + 
-						   "<td >" + i + "</td>" +
-						   "<td >" + obj.address + "</td>" +
-						   "<td>" + obj.network_size + "</td>"+             
-						   "<td>" + htmlEncode(obj.description) + "</td>" +
-						   "<td class='ping_address'>" + obj.last_success_ping + "</td>" +
-					   "</tr>");
+				addRowAddress(i, obj);
 			}
 		}
-	}
-	else
-	{
-		for (var i = 0; i<net_addresses.length; i++) {
-			var obj = net_addresses[i];
+		else{
 			if (obj.parent == null){
 				continue;
 			} 
-			$("#addresses > tbody:last").append("<tr>" + 
-												   "<td >" + i + "</td>" +
-												   "<td >" + obj.address + "</td>" +
-												   "<td>" + obj.network_size + "</td>"+             
-												   "<td class='description'>" + htmlEncode(obj.description) + "</td>" +
-												   "<td class='ping_address'>" + obj.last_success_ping + "</td>" +
-											   "</tr>");
-//			{'address', 'network_size', 'url', 'parent', 'description'}
+			addRowAddress(i, obj);
 		}
 	}
 	gloabalClickEvents();
+}
+function addRowAddress(index, obj){
+	$("#addresses > tbody:last").append("<tr>" + 
+			   "<td >" + index + "</td>" +
+			   "<td >" + obj.address + "</td>" +
+			   "<td>" + obj.network_size + "</td>"+             
+			   "<td class='description'>" + htmlEncode(obj.description) + "</td>" +
+			   "<td class='ping_address'>" + obj.last_success_ping + "</td>" +
+		   "</tr>");
 }
 function renderAllNetworklist(){
 	if (net_addresses.length < 1){
@@ -88,9 +80,18 @@ function gloabalClickEvents() {
         parent.append("<td>" + pingResult(address) +"</td>")
 	});
 //	change field and send data back to server.
-	$('.description').one('click', function () {
-//		$(this).html = '';
-		console.log(this);
+	$('.description').on('dblclick', function () {
+		var _txtvalue = $(this).text(),
+		    that = $(this);
+		$(this).empty();
+		$(this).append("<input class='edit_btn' value='" + _txtvalue +"'/>")
+//		$('.edit_btn').focus();
+
+		$('.edit_btn').focusout(function() {
+			$(that).text($(this).val());
+			$(this).remove();
+			updateDbrow($(that));
+		});
 	});
 
 ////	End: Click event to ping address:
@@ -113,6 +114,9 @@ function gloabalClickEvents() {
 //	End: Sort table content
 
 
+}
+function updateDbrow(node){
+	console.log(node);
 }
 function htmlEncode(value){
 	return $('<div/>').text(value).html();
