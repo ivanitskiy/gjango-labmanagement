@@ -1,0 +1,11 @@
+{% extends "ip_addresses/base.html"%}
+{% load static %}
+{% block head %}
+<title>Address {{address_obj.address}} details</title>
+{% endblock %}
+{% block title %}Address {{address_obj.address}} details{% endblock %}
+    {% block content %}
+       <p> {{address_obj.address}}
+       <p> {{address_obj.network_size}}
+       <p> {{address_obj.description}}
+    {% endblock %}

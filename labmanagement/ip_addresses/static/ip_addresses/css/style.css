@@ -1,0 +1,48 @@
+table,td,th{
+	border:1px solid black;
+	border-collapse:collapse;
+	padding:2px;
+}
+th{
+	background-color:lightgrey;
+}
+tr:nth-child(1) > th{
+	cursor:n-resize;
+}
+input{
+	height:24px;
+	display:inline-block;
+	padding:0px;
+	margin:0px;
+	text-align:center;
+	padding:0px 4px;
+}
+.filtered{
+	background-color:#FFCCCC;
+}
+.fl_r{
+	float: right;
+}
+.fl_l{
+	float: left;
+}
+#page_layout{
+	padding: 0px;
+	margin: 0px auto;
+	position: relative;
+	width: 800px;
+}
+#side_bar{
+	padding: 5px 0 10px 4px;
+	width: 136px;
+}
+#content{
+	width: 600px;
+	padding: 0px 15 0px 0px;
+}
+#side_bar ol{
+	list-style: none;
+}
+#side_bar li{
+	
+}

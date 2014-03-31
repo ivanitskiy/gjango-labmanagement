@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE>
+<html lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'ip_addresses/css/style.css' %}">
+{% block head %}{% endblock %}
+</head>
+<body>
+	<div id="page_layout">
+		<div id="side_bar" class="fl_l"></div>
+    	<div id="content" class="fl_r">{% block content %}{% endblock %}</div>
+	</div>
+</body>
+</html>
