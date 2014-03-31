@@ -90,6 +90,7 @@ function gloabalClickEvents() {
 //	change field and send data back to server.
 	$('.description').one('click', function () {
 //		$(this).html = '';
+		console.log(this);
 	});
 
 ////	End: Click event to ping address:
