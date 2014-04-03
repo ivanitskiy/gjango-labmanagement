@@ -46,3 +46,10 @@ input{
 #side_bar li{
 	
 }
+input.edit_btn{
+	width: 100%;
+}
+
+a, td.ping_address{
+	cursor:pointer;
+}
