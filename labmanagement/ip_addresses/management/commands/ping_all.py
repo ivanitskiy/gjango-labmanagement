@@ -10,6 +10,8 @@ from django.utils import timezone
 from time import sleep
 
 class Command(BaseCommand):
+    """Command to ping all hosts from the DB. It could be used in crontab.
+    """
     def handle(self, *args, **options):
         addr_list = NetworkAddress.objects.filter(parent__isnull=False)
         for network_address_obj in addr_list:
